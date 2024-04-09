@@ -1,6 +1,5 @@
 package cz.honza.kotlachy.konzole
 
-import cz.honza.kotlachy.pravidla.data.ZAKLADNI_POSTAVENI
 import java.util.Scanner
 
 fun main() {

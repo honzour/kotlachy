@@ -1,6 +1,6 @@
 package cz.honza.kotlachy.konzole
 
-import cz.honza.kotlachy.pravidla.data.ZAKLADNI_POSTAVENI
+import cz.honza.kotlachy.pravidla.data.Pozice
 import cz.honza.kotlachy.pravidla.rutiny.generujTahy
 
 fun napoveda() {
@@ -14,7 +14,7 @@ tg - testuj generátor tahů
 }
 
 fun testujGenerator() {
-    val tahy = generujTahy(ZAKLADNI_POSTAVENI)
+    val tahy = generujTahy(Pozice())
     for (i in 0..tahy.size - 1) {
         println("Tah $i. ${tahy[i]}")
     }
@@ -22,7 +22,7 @@ fun testujGenerator() {
 
 fun command(line: String) {
     when (line) {
-        "sa" -> vypis(ZAKLADNI_POSTAVENI)
+        "sa" -> vypis(Pozice())
         "na" -> napoveda()
         "tg" -> testujGenerator()
     }
