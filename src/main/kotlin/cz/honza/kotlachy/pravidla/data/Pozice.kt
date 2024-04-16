@@ -32,4 +32,6 @@ val ZAKLADNI_SACHOVNICE = listOf(
 )
 
 const val A1 = 21
+const val H2 = 38
+const val H6 = 78
 const val H8 = 98

@@ -1,7 +1,9 @@
 package cz.honza.kotlachy.konzole
 
 import cz.honza.kotlachy.pravidla.data.Pozice
+import cz.honza.kotlachy.pravidla.data.Uloha
 import cz.honza.kotlachy.pravidla.rutiny.generujTahy
+import cz.honza.kotlachy.pravidla.rutiny.smazTahy
 
 fun napoveda() {
     println(
@@ -13,11 +15,14 @@ tg - testuj generátor tahů
 """)
 }
 
+val uloha = Uloha()
+
 fun testujGenerator() {
-    val tahy = generujTahy(Pozice())
-    for (i in 0..tahy.size - 1) {
-        println("Tah $i. ${tahy[i]}")
+    generujTahy(uloha)
+    for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
+        println("Tah $i. ${uloha.zasobnikTahu.tahy[i]}")
     }
+    smazTahy(uloha)
 }
 
 fun command(line: String) {
