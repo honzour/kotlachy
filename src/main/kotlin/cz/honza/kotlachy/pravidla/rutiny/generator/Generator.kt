@@ -1,4 +1,4 @@
-package cz.honza.kotlachy.pravidla.rutiny
+package cz.honza.kotlachy.pravidla.rutiny.generator
 
 import cz.honza.kotlachy.pravidla.data.*
 
@@ -64,21 +64,7 @@ private fun zaradTah(uloha: Uloha, tah: Int) {
     }
 }
 
-private fun zaradNormalniTah(uloha: Uloha, odkud: Int, kam: Int) {
+public fun zaradNormalniTah(uloha: Uloha, odkud: Int, kam: Int) {
     zaradTah(uloha, (odkud shl 7) or kam)
 }
 
-private fun bilyPesec(uloha: Uloha, pole: Int) {
-    if (pole <= H6) {
-        if (uloha.pos.sch[pole + 10] == 0) {
-            zaradNormalniTah(uloha, pole, pole + 10)
-            if (pole <= H2 && uloha.pos.sch[pole + 20] == 0) {
-                zaradNormalniTah(uloha, pole, pole + 20)
-            }
-        }
-        if (uloha.pos.sch[pole + 9] < 0)
-            zaradNormalniTah(uloha, pole, pole + 9)
-        if (uloha.pos.sch[pole + 11] < 0)
-            zaradNormalniTah(uloha, pole, pole + 11)
-    }
-}

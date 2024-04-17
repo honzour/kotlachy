@@ -2,8 +2,8 @@ package cz.honza.kotlachy.konzole
 
 import cz.honza.kotlachy.pravidla.data.Pozice
 import cz.honza.kotlachy.pravidla.data.Uloha
-import cz.honza.kotlachy.pravidla.rutiny.generujTahy
-import cz.honza.kotlachy.pravidla.rutiny.smazTahy
+import cz.honza.kotlachy.pravidla.rutiny.generator.generujTahy
+import cz.honza.kotlachy.pravidla.rutiny.generator.smazTahy
 
 fun napoveda() {
     println(
