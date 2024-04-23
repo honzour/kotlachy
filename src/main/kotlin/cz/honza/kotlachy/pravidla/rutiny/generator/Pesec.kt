@@ -19,6 +19,13 @@ fun promenaBilehoPesce(uloha: Uloha, pole: Int) {
 }
 
 fun bilymPescemMimochodem(uloha: Uloha, pole: Int) {
+    if (uloha.pos.mimoch == pole + 1) {
+        zaradMimochodem(uloha, pole, pole + 11)
+    } else {
+        if (uloha.pos.mimoch == pole - 1) {
+            zaradMimochodem(uloha, pole, pole + 9)
+        }
+    }
 }
 fun bilymPescemVpred(uloha: Uloha, pole: Int) {
     if (uloha.pos.sch[pole + 10] == 0) {

@@ -64,7 +64,11 @@ private fun zaradTah(uloha: Uloha, tah: Int) {
     }
 }
 
-public fun zaradNormalniTah(uloha: Uloha, odkud: Int, kam: Int) {
+fun zaradNormalniTah(uloha: Uloha, odkud: Int, kam: Int) {
     zaradTah(uloha, (odkud shl 7) or kam)
+}
+
+fun zaradMimochodem(uloha: Uloha, odkud: Int, kam: Int) {
+    zaradTah(uloha, ((odkud shl 7) or kam) or (3 shl 14))
 }
 
