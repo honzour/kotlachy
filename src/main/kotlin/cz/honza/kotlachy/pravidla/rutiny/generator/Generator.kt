@@ -51,8 +51,11 @@ fun smazTahy(uloha: Uloha) {
 
 private fun generujBileTahy(uloha: Uloha) {
     for (pole in A1 .. H8) {
-        when (uloha.pos.sch[pole]) {
-            1 -> bilyPesec(uloha, pole)
+        if (uloha.pos.bily) {
+            when (uloha.pos.sch[pole]) {
+                1 -> bilyPesec(uloha, pole)
+                2 -> bilyJezdec(uloha, pole)
+            }
         }
     }
 }
@@ -72,3 +75,6 @@ fun zaradMimochodem(uloha: Uloha, odkud: Int, kam: Int) {
     zaradTah(uloha, ((odkud shl 7) or kam) or (3 shl 14))
 }
 
+fun zaradBilouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
+    zaradTah(uloha, (1 shl 15) or (co shl 10) or ((odkud - A7) shl 7) or ((kam - A8) shl 4))
+}

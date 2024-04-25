@@ -15,7 +15,18 @@ fun bilyPesec(uloha: Uloha, pole: Int) {
 }
 
 fun promenaBilehoPesce(uloha: Uloha, pole: Int) {
-
+    if (pole + 10 == 0) {
+        for (co in 0..3)
+            zaradBilouPromenu(uloha, pole, pole + 10, co)
+    }
+    if (pole + 11 < 0) {
+        for (co in 0..3)
+            zaradBilouPromenu(uloha, pole, pole + 11, co)
+    }
+    if (pole + 9 < 0) {
+        for (co in 0..3)
+            zaradBilouPromenu(uloha, pole, pole + 9, co)
+    }
 }
 
 fun bilymPescemMimochodem(uloha: Uloha, pole: Int) {
