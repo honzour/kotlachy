@@ -55,6 +55,7 @@ private fun generujBileTahy(uloha: Uloha) {
             when (uloha.pos.sch[pole]) {
                 1 -> bilyPesec(uloha, pole)
                 2 -> bilyJezdec(uloha, pole)
+                3 -> bilyStrelec(uloha, pole)
             }
         }
     }
@@ -77,4 +78,22 @@ fun zaradMimochodem(uloha: Uloha, odkud: Int, kam: Int) {
 
 fun zaradBilouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
     zaradTah(uloha, (1 shl 15) or (co shl 10) or ((odkud - A7) shl 7) or ((kam - A8) shl 4))
+}
+
+fun dlouhaBilaFigura(uloha: Uloha, pole: Int, offset: Array<Int>) {
+    for (i in 0..< offset.size) {
+        var kam = pole  + offset[i]
+        while (true) {
+            if (uloha.pos.sch[kam] <= 0) {
+                zaradNormalniTah(uloha, pole, kam)
+                if (uloha.pos.sch[kam] == 0) {
+                    kam += offset[i]
+                } else {
+                    break
+                }
+            } else {
+                break
+            }
+        }
+    }
 }
