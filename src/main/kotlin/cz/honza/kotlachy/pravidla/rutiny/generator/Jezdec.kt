@@ -2,7 +2,7 @@ package cz.honza.kotlachy.pravidla.rutiny.generator
 
 import cz.honza.kotlachy.pravidla.data.Uloha
 
-val offsetJezdce = arrayOf(19, 21, 12, 8, -19, -21, -12, -8)
+private val offsetJezdce = arrayOf(19, 21, 12, 8, -19, -21, -12, -8)
 
 fun bilyJezdec(uloha: Uloha, pole: Int) {
     for (i in 0 .. offsetJezdce.size - 1) {

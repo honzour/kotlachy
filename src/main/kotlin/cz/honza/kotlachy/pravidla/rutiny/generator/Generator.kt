@@ -56,6 +56,8 @@ private fun generujBileTahy(uloha: Uloha) {
                 1 -> bilyPesec(uloha, pole)
                 2 -> bilyJezdec(uloha, pole)
                 3 -> bilyStrelec(uloha, pole)
+                4 -> bilaVez(uloha, pole)
+                5 -> bilaDama(uloha, pole)
             }
         }
     }
