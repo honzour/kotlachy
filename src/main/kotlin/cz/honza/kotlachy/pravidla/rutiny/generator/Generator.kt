@@ -58,6 +58,7 @@ private fun generujBileTahy(uloha: Uloha) {
                 3 -> bilyStrelec(uloha, pole)
                 4 -> bilaVez(uloha, pole)
                 5 -> bilaDama(uloha, pole)
+                6 -> bilyKral(uloha, pole)
             }
         }
     }
@@ -83,7 +84,7 @@ fun zaradBilouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
 }
 
 fun dlouhaBilaFigura(uloha: Uloha, pole: Int, offset: Array<Int>) {
-    for (i in 0..< offset.size) {
+    for (i in offset.indices) {
         var kam = pole  + offset[i]
         while (true) {
             if (uloha.pos.sch[kam] <= 0) {
