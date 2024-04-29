@@ -73,3 +73,23 @@ fun cernyKral(uloha: Uloha, pole: Int) {
         zaradTah(uloha, /*10111 */ 23)
     }
 }
+
+fun napadenoBilymKralem(uloha: Uloha, pole: Int) : Boolean {
+    for (i in offsetKrale.indices) {
+        val kam = pole + offsetKrale[i]
+        if (uloha.pos.sch[kam] == 6 ) {
+            return true
+        }
+    }
+    return false
+}
+
+fun napadenoCernymKralem(uloha: Uloha, pole: Int) : Boolean {
+    for (i in offsetKrale.indices) {
+        val kam = pole + offsetKrale[i]
+        if (uloha.pos.sch[kam] == -6 ) {
+            return true
+        }
+    }
+    return false
+}
