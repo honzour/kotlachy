@@ -11,3 +11,11 @@ fun bilyJezdec(uloha: Uloha, pole: Int) {
             zaradNormalniTah(uloha, pole, kam)
     }
 }
+
+fun cernyJezdec(uloha: Uloha, pole: Int) {
+    for (i in 0 .. offsetJezdce.size - 1) {
+        val kam = pole + offsetJezdce[i]
+        if (uloha.pos.sch[kam]  in 0 .. 6)
+            zaradNormalniTah(uloha, pole, kam)
+    }
+}

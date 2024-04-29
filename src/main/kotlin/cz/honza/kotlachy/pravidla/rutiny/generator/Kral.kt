@@ -13,3 +13,13 @@ fun bilyKral(uloha: Uloha, pole: Int) {
     }
     // TODO rošáda
 }
+
+fun cernyKral(uloha: Uloha, pole: Int) {
+    for (i in offsetKrale.indices) {
+        val kam = pole + offsetKrale[i]
+        if (uloha.pos.sch[kam] in 0 .. 6 ) {
+            zaradNormalniTah(uloha, pole, kam)
+        }
+    }
+    // TODO rošáda
+}
