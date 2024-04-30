@@ -41,12 +41,14 @@ int Ohrozeno(const s8 *p, int bilym) /*bilym - ohrozuje to pole bily*/
 
 fun napadeno(uloha: Uloha, pole: Int, bilym: Boolean): Boolean {
     if (bilym) {
-        return
+        val r =
             napadenoBilymPescem(uloha, pole) ||
             napadenoBilymJezdcem(uloha, pole) ||
-            napadenoBilouSikmou(uloha: Uloha, pole: Int) ||
-            napadenoBilouRovnou(uloha: Uloha, pole: Int) ||
+            napadenoBilouSikmou(uloha, pole) ||
+            napadenoBilouRovnou(uloha, pole) ||
             napadenoBilymKralem(uloha, pole)
-
+        return r
+    } else {
+        return false
     }
 }
