@@ -1,6 +1,6 @@
 package cz.honza.kotlachy.pravidla.data
 
-class Uloha {
-    val pos = Pozice()
-    val zasobnikTahu = ZasobnikTahu()
-}
+class Uloha(
+    val pos: Pozice = Pozice(),
+    val zasobnikTahu: ZasobnikTahu = ZasobnikTahu()
+)
