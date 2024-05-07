@@ -14,6 +14,7 @@ na - nápověda
 ko - konec
 sa - výpis aktuální pozice
 tg - testuj generátor tahů
+tc - testuj rychost rutin
 """)
 }
 
