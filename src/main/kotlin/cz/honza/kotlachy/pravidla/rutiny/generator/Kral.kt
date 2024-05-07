@@ -1,13 +1,29 @@
 package cz.honza.kotlachy.pravidla.rutiny.generator
 
-import cz.honza.kotlachy.pravidla.data.*
+import cz.honza.kotlachy.pravidla.data.A1
+import cz.honza.kotlachy.pravidla.data.A8
+import cz.honza.kotlachy.pravidla.data.B1
+import cz.honza.kotlachy.pravidla.data.B8
+import cz.honza.kotlachy.pravidla.data.C1
+import cz.honza.kotlachy.pravidla.data.C8
+import cz.honza.kotlachy.pravidla.data.D1
+import cz.honza.kotlachy.pravidla.data.D8
+import cz.honza.kotlachy.pravidla.data.E1
+import cz.honza.kotlachy.pravidla.data.E8
+import cz.honza.kotlachy.pravidla.data.F1
+import cz.honza.kotlachy.pravidla.data.F8
+import cz.honza.kotlachy.pravidla.data.G1
+import cz.honza.kotlachy.pravidla.data.G8
+import cz.honza.kotlachy.pravidla.data.H1
+import cz.honza.kotlachy.pravidla.data.H8
+import cz.honza.kotlachy.pravidla.data.Uloha
 
 private val offsetKrale = arrayOf(11, 10, 9, 1, -1, -9, -10, -11)
 
 fun bilyKral(uloha: Uloha, pole: Int) {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] <= 0 ) {
+        if (uloha.pos.sch[kam] <= 0) {
             zaradNormalniTah(uloha, pole, kam)
         }
     }
@@ -42,7 +58,7 @@ fun bilyKral(uloha: Uloha, pole: Int) {
 fun cernyKral(uloha: Uloha, pole: Int) {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] in 0 .. 6 ) {
+        if (uloha.pos.sch[kam] in 0..6) {
             zaradNormalniTah(uloha, pole, kam)
         }
     }
@@ -74,20 +90,20 @@ fun cernyKral(uloha: Uloha, pole: Int) {
     }
 }
 
-fun napadenoBilymKralem(uloha: Uloha, pole: Int) : Boolean {
+fun napadenoBilymKralem(uloha: Uloha, pole: Int): Boolean {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] == 6 ) {
+        if (uloha.pos.sch[kam] == 6) {
             return true
         }
     }
     return false
 }
 
-fun napadenoCernymKralem(uloha: Uloha, pole: Int) : Boolean {
+fun napadenoCernymKralem(uloha: Uloha, pole: Int): Boolean {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] == -6 ) {
+        if (uloha.pos.sch[kam] == -6) {
             return true
         }
     }
