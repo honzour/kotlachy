@@ -1,5 +1,6 @@
 package cz.honza.kotlachy.notace
 
+import cz.honza.kotlachy.konzole.int2kamen
 import cz.honza.kotlachy.pravidla.data.A1
 
 /* Format TTah1::data:   def.: Nenormalni tah je
@@ -35,18 +36,29 @@ n - Je to nenormalni tah ?
        (resp A1)
 */
 fun tah2str(tah: Int) : String {
-    if (tah shr 15 == 1) {
-        // nenormalni
-        return "nenormalni"
+    if (tah shr 14 == 3) {
+        // rošády a proměny
+        if ((tah shr 13) and 1 == 1) {
+            return if ((tah shr 11) and 1 == 1) "O-O-O" else "O-O"
+        } else {
+            // nmrcppoookkk0000
+
+            var odkud = (tah shr 7) and 7
+            var kam = (tah shr 4) and 7
+            var co = int2kamen(((tah shr 10) and 3) + 2)
+            return "promena"
+        }
+    } else {
+        // normální a mimochodem
+        val kam = (tah and 127) - A1
+        val odkud = ((tah shr 7) and 127) - A1
+
+        val odkudX = 'a' + odkud % 10
+        val odkudY = odkud / 10 + 1
+
+        val kamX = 'a' + kam % 10
+        val kamY = kam / 10 + 1
+
+        return "$odkudX$odkudY-$kamX$kamY"
     }
-    val kam = (tah and 127) - A1
-    val odkud = ((tah shr 7) and 127) - A1
-
-    val odkudX = 'a' + odkud % 10
-    val odkudY = odkud / 10 + 1
-
-    val kamX = 'a' + kam % 10
-    val kamY = kam / 10 + 1
-
-    return "$odkudX$odkudY-$kamX$kamY"
 }
