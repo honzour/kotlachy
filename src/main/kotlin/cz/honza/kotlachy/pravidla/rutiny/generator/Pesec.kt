@@ -111,13 +111,13 @@ fun cernymPescemBer(uloha: Uloha, pole: Int) {
 }
 
 fun zaradMimochodem(uloha: Uloha, odkud: Int, kam: Int) {
-    zaradTah(uloha, ((odkud shl 7) or kam) or (3 shl 14))
+    zaradTah(uloha, ((odkud shl 7) or kam) or (1 shl 15))
 }
 
 fun zaradBilouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
-    zaradTah(uloha, (1 shl 15) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
+    zaradTah(uloha, (3 shl 14) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
 }
 
 fun zaradCernouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
-    zaradTah(uloha, (1 shl 15) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
+    zaradTah(uloha, (3 shl 14) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
 }

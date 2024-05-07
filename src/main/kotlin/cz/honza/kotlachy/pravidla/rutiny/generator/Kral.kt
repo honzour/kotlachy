@@ -37,7 +37,7 @@ fun bilyKral(uloha: Uloha, pole: Int) {
         && !napadeno(uloha, G1, false)
     ) {
         // nmrcv00000000000 (rosada)
-        zaradTah(uloha, /*10100 */ 20)
+        zaradTah(uloha, /*11100 */ 28 shl 11)
     }
 
     if (pole == E1
@@ -51,7 +51,7 @@ fun bilyKral(uloha: Uloha, pole: Int) {
         && !napadeno(uloha, C1, false)
     ) {
         // nmrcv00000000000 (rosada)
-        zaradTah(uloha, /*10101 */ 21)
+        zaradTah(uloha, /*11101 */ 29 shl 11)
     }
 }
 
@@ -72,7 +72,7 @@ fun cernyKral(uloha: Uloha, pole: Int) {
         && !napadeno(uloha, G8, true)
     ) {
         // nmrcv00000000000 (rosada)
-        zaradTah(uloha, /*10110 */ 22)
+        zaradTah(uloha, /*11110 */ 30 shl 11)
     }
 
     if (pole == E8
@@ -86,7 +86,7 @@ fun cernyKral(uloha: Uloha, pole: Int) {
         && !napadeno(uloha, C8, true)
     ) {
         // nmrcv00000000000 (rosada)
-        zaradTah(uloha, /*10111 */ 23)
+        zaradTah(uloha, /*11111 */ 31 shl 11)
     }
 }
 
