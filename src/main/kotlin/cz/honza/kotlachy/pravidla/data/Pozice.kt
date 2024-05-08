@@ -57,16 +57,20 @@ const val E1 = 25
 const val F1 = 26
 const val G1 = 27
 const val H1 = 28
+
 const val A2 = 31
 const val H2 = 38
+
 const val H6 = 78
+
 const val A7 = 81
-const val A8 = 88
-const val B8 = 22
-const val C8 = 23
-const val D8 = 24
-const val E8 = 25
-const val F8 = 26
-const val G8 = 27
+
+const val A8 = 91
+const val B8 = 92
+const val C8 = 93
+const val D8 = 94
+const val E8 = 95
+const val F8 = 96
+const val G8 = 97
 const val H8 = 98
 

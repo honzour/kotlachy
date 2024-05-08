@@ -21,15 +21,15 @@ fun bilyPesec(uloha: Uloha, pole: Int) {
 }
 
 fun promenaBilehoPesce(uloha: Uloha, pole: Int) {
-    if (pole + 10 == 0) {
+    if (uloha.pos.sch[pole + 10] == 0) {
         for (co in 0..3)
             zaradBilouPromenu(uloha, pole, pole + 10, co)
     }
-    if (pole + 11 < 0) {
+    if (uloha.pos.sch[pole + 11] < 0) {
         for (co in 0..3)
             zaradBilouPromenu(uloha, pole, pole + 11, co)
     }
-    if (pole + 9 < 0) {
+    if (uloha.pos.sch[pole + 9] < 0) {
         for (co in 0..3)
             zaradBilouPromenu(uloha, pole, pole + 9, co)
     }
@@ -71,15 +71,15 @@ fun cernyPesec(uloha: Uloha, pole: Int) {
 }
 
 fun promenaCernehoPesce(uloha: Uloha, pole: Int) {
-    if (pole - 10 == 0) {
+    if (uloha.pos.sch[pole - 10] == 0) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 10, co)
     }
-    if (pole - 11 < 0) {
+    if (uloha.pos.sch[pole - 11] < 0) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 11, co)
     }
-    if (pole - 9 < 0) {
+    if (uloha.pos.sch[pole - 9] < 0) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 9, co)
     }
@@ -115,9 +115,10 @@ fun zaradMimochodem(uloha: Uloha, odkud: Int, kam: Int) {
 }
 
 fun zaradBilouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
-    zaradTah(uloha, (3 shl 14) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
+    // nmrcppoookkk0000
+    zaradTah(uloha, (3 shl 14) or (co shl 10) or ((odkud - A7) shl 7) or ((kam - A8) shl 4))
 }
 
 fun zaradCernouPromenu(uloha: Uloha, odkud: Int, kam: Int, co: Int) {
-    zaradTah(uloha, (3 shl 14) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
+    zaradTah(uloha, (3 shl 14) or (1 shl 2) or (co shl 10) or ((odkud - A2) shl 7) or ((kam - A1) shl 4))
 }
