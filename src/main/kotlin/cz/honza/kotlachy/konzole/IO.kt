@@ -5,6 +5,7 @@ import cz.honza.kotlachy.pravidla.data.*
 import cz.honza.kotlachy.pravidla.rutiny.generator.generujTahy
 import cz.honza.kotlachy.pravidla.rutiny.generator.napadeno
 import cz.honza.kotlachy.pravidla.rutiny.generator.smazTahy
+import cz.honza.kotlachy.pravidla.rutiny.tahy.tahniVPartii
 import kotlin.system.measureTimeMillis
 
 fun napoveda() {
@@ -18,9 +19,14 @@ tc - testuj rychost rutin
 """)
 }
 
-val uloha = Uloha()
+fun tahni(uloha: Uloha) {
+    generujTahy(uloha)
+    val tah = uloha.zasobnikTahu.tahy[0];
+    tahniVPartii(uloha, tah)
+    vypis(uloha.pos)
+}
 
-fun testujGenerator() {
+fun testujGenerator(uloha: Uloha) {
     generujTahy(uloha)
     for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
         println("Tah ${i + 1}. ${tah2str(uloha.zasobnikTahu.tahy[i])}")
@@ -58,11 +64,12 @@ fun testujCas() {
             "suma $suma")
 }
 
-fun command(line: String) {
+fun command(line: String, uloha: Uloha) {
     when (line) {
-        "sa" -> vypis(Pozice())
+        "sa" -> vypis(uloha.pos)
         "na" -> napoveda()
-        "tg" -> testujGenerator()
+        "tg" -> testujGenerator(uloha)
         "tc" -> testujCas()
+        "ta" -> tahni(uloha)
     }
 }
