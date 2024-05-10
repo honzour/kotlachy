@@ -1,11 +1,15 @@
 package cz.honza.kotlachy.pravidla.rutiny.tahy
 
 import cz.honza.kotlachy.pravidla.data.A1
+import cz.honza.kotlachy.pravidla.data.A2
+import cz.honza.kotlachy.pravidla.data.A7
 import cz.honza.kotlachy.pravidla.data.A8
 import cz.honza.kotlachy.pravidla.data.DataPartie
 import cz.honza.kotlachy.pravidla.data.E1
 import cz.honza.kotlachy.pravidla.data.E8
 import cz.honza.kotlachy.pravidla.data.H1
+import cz.honza.kotlachy.pravidla.data.H2
+import cz.honza.kotlachy.pravidla.data.H7
 import cz.honza.kotlachy.pravidla.data.H8
 import cz.honza.kotlachy.pravidla.data.Uloha
 
@@ -64,17 +68,17 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
         }
     val t = data.tah
     uloha.pos.mimoch = 0
+    // Normální tah
     if ((t shr 15) and 1 == 0) {
         //  nmoooooookkkkkkk
         val odkud = (t shr 7) and 127
         val kam = t and 127
         data.sebranyKamen = uloha.pos.sch[kam]
+        // sebralo se něco nebo se táhlo pěšcem
         data.nevratnaZmena =
             uloha.pos.sch[odkud] == 1
                     || uloha.pos.sch[odkud] == -1
                     || uloha.pos.sch[kam] != 0
-        uloha.pos.sch[kam] = uloha.pos.sch[odkud]
-        uloha.pos.sch[odkud] = 0
         if (odkud == E1) {
             uloha.pos.mbRoch = false
             uloha.pos.vbRoch = false
@@ -95,7 +99,26 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
         if (odkud == H8 || kam == H8) {
             uloha.pos.mcRoch = false
         }
+        if (uloha.pos.sch[odkud] == 1) {
+            if (odkud in A2..H2 && kam == odkud + 20 &&
+                (uloha.pos.sch[kam + 1] == -1 || uloha.pos.sch[kam - 1] == -1)) {
+                    uloha.pos.mimoch = kam;
+                }
+        }
+        if (uloha.pos.sch[odkud] == -1) {
+            if (odkud in A7..H7 && kam == odkud - 20 &&
+                (uloha.pos.sch[kam + 1] == 1 || uloha.pos.sch[kam - 1] == 1)) {
+                uloha.pos.mimoch = kam;
+            }
+        }
+
+        uloha.pos.sch[kam] = uloha.pos.sch[odkud]
+        uloha.pos.sch[odkud] = 0
+
+    } else {
+        // nenormální tah TODO
     }
+
     uloha.pos.bily = !uloha.pos.bily
 
     uloha.indexDoPartie++;

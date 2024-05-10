@@ -22,8 +22,11 @@ tc - testuj rychost rutin
 fun tahni(uloha: Uloha) {
     generujTahy(uloha)
     val tah = uloha.zasobnikTahu.tahy[0];
+    val tahString = tah2str(tah)
     smazTahy(uloha)
     tahniVPartii(uloha, tah)
+
+    println(tahString)
     vypis(uloha.pos)
 }
 

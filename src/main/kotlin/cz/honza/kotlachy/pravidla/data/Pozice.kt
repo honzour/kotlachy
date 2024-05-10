@@ -64,6 +64,7 @@ const val H2 = 38
 const val H6 = 78
 
 const val A7 = 81
+const val H7 = 88
 
 const val A8 = 91
 const val B8 = 92

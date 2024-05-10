@@ -75,11 +75,11 @@ fun promenaCernehoPesce(uloha: Uloha, pole: Int) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 10, co)
     }
-    if (uloha.pos.sch[pole - 11] < 0) {
+    if (uloha.pos.sch[pole - 11] > 0 && uloha.pos.sch[pole - 11] <= 6) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 11, co)
     }
-    if (uloha.pos.sch[pole - 9] < 0) {
+    if (uloha.pos.sch[pole - 9] > 0 && uloha.pos.sch[pole - 9] <= 6) {
         for (co in 0..3)
             zaradCernouPromenu(uloha, pole, pole - 9, co)
     }
@@ -104,9 +104,9 @@ fun cernymPescemVpred(uloha: Uloha, pole: Int) {
 }
 
 fun cernymPescemBer(uloha: Uloha, pole: Int) {
-    if (uloha.pos.sch[pole - 9] > 0)
+    if (uloha.pos.sch[pole - 9] > 0 && uloha.pos.sch[pole - 9] <= 6)
         zaradNormalniTah(uloha, pole, pole - 9)
-    if (uloha.pos.sch[pole - 11] > 0)
+    if (uloha.pos.sch[pole - 11] > 0  && uloha.pos.sch[pole - 11] <= 6)
         zaradNormalniTah(uloha, pole, pole - 11)
 }
 
