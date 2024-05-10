@@ -1,6 +1,12 @@
 package cz.honza.kotlachy.pravidla.rutiny.tahy
 
+import cz.honza.kotlachy.pravidla.data.A1
+import cz.honza.kotlachy.pravidla.data.A8
 import cz.honza.kotlachy.pravidla.data.DataPartie
+import cz.honza.kotlachy.pravidla.data.E1
+import cz.honza.kotlachy.pravidla.data.E8
+import cz.honza.kotlachy.pravidla.data.H1
+import cz.honza.kotlachy.pravidla.data.H8
 import cz.honza.kotlachy.pravidla.data.Uloha
 
 /*
@@ -69,6 +75,26 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
                     || uloha.pos.sch[kam] != 0
         uloha.pos.sch[kam] = uloha.pos.sch[odkud]
         uloha.pos.sch[odkud] = 0
+        if (odkud == E1) {
+            uloha.pos.mbRoch = false
+            uloha.pos.vbRoch = false
+        }
+        if (odkud == E8) {
+            uloha.pos.mcRoch = false
+            uloha.pos.vcRoch = false
+        }
+        if (odkud == A1 || kam == A1) {
+            uloha.pos.vbRoch = false
+        }
+        if (odkud == H1 || kam == H1) {
+            uloha.pos.mbRoch = false
+        }
+        if (odkud == A8 || kam == A8) {
+            uloha.pos.vcRoch = false
+        }
+        if (odkud == H8 || kam == H8) {
+            uloha.pos.mcRoch = false
+        }
     }
     uloha.pos.bily = !uloha.pos.bily
 

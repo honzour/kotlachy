@@ -10,6 +10,12 @@ fun vypis(pozice: Pozice) {
         }
         println()
     }
+    val bily = if (pozice.bily) "bílý" else "černý"
+    val mb = if (pozice.mbRoch) "mb" else ""
+    val vb = if (pozice.vbRoch) "vb" else ""
+    val mc = if (pozice.mcRoch) "mc" else ""
+    val vc = if (pozice.vcRoch) "vb" else ""
+    println("$bily, mimoch: ${pozice.mimoch}, roch: $mb $vb $mc $vc")
 }
 
 fun int2kamen(kamen: Int) : Char {
