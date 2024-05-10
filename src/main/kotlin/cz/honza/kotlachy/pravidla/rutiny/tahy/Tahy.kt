@@ -70,53 +70,17 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
     uloha.pos.mimoch = 0
     // Normální tah
     if ((t shr 15) and 1 == 0) {
-        //  nmoooooookkkkkkk
-        val odkud = (t shr 7) and 127
-        val kam = t and 127
-        data.sebranyKamen = uloha.pos.sch[kam]
-        // sebralo se něco nebo se táhlo pěšcem
-        data.nevratnaZmena =
-            uloha.pos.sch[odkud] == 1
-                    || uloha.pos.sch[odkud] == -1
-                    || uloha.pos.sch[kam] != 0
-        if (odkud == E1) {
-            uloha.pos.mbRoch = false
-            uloha.pos.vbRoch = false
-        }
-        if (odkud == E8) {
-            uloha.pos.mcRoch = false
-            uloha.pos.vcRoch = false
-        }
-        if (odkud == A1 || kam == A1) {
-            uloha.pos.vbRoch = false
-        }
-        if (odkud == H1 || kam == H1) {
-            uloha.pos.mbRoch = false
-        }
-        if (odkud == A8 || kam == A8) {
-            uloha.pos.vcRoch = false
-        }
-        if (odkud == H8 || kam == H8) {
-            uloha.pos.mcRoch = false
-        }
-        if (uloha.pos.sch[odkud] == 1) {
-            if (odkud in A2..H2 && kam == odkud + 20 &&
-                (uloha.pos.sch[kam + 1] == -1 || uloha.pos.sch[kam - 1] == -1)) {
-                    uloha.pos.mimoch = kam;
-                }
-        }
-        if (uloha.pos.sch[odkud] == -1) {
-            if (odkud in A7..H7 && kam == odkud - 20 &&
-                (uloha.pos.sch[kam + 1] == 1 || uloha.pos.sch[kam - 1] == 1)) {
-                uloha.pos.mimoch = kam;
+        normalniTahVPartii(uloha, t, data)
+    } else {
+        if ((t shr 14) and 1 == 0) {
+            mimochodemVPartii(uloha, t, data)
+        } else {
+            if ((t shr 13) and 1 == 1) {
+                rosadaVPartii(uloha, t, data)
+            } else {
+                promenaVPartii(uloha, t, data)
             }
         }
-
-        uloha.pos.sch[kam] = uloha.pos.sch[odkud]
-        uloha.pos.sch[odkud] = 0
-
-    } else {
-        // nenormální tah TODO
     }
 
     uloha.pos.bily = !uloha.pos.bily
@@ -128,4 +92,71 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
         }
         uloha.partie.add(data)
     }
+}
+
+private fun normalniTahVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+    val odkud = (t shr 7) and 127
+    val kam = t and 127
+    data.sebranyKamen = uloha.pos.sch[kam]
+    // sebralo se něco nebo se táhlo pěšcem
+    data.nevratnaZmena =
+        uloha.pos.sch[odkud] == 1
+                || uloha.pos.sch[odkud] == -1
+                || uloha.pos.sch[kam] != 0
+    if (odkud == E1) {
+        uloha.pos.mbRoch = false
+        uloha.pos.vbRoch = false
+    }
+    if (odkud == E8) {
+        uloha.pos.mcRoch = false
+        uloha.pos.vcRoch = false
+    }
+    if (odkud == A1 || kam == A1) {
+        uloha.pos.vbRoch = false
+    }
+    if (odkud == H1 || kam == H1) {
+        uloha.pos.mbRoch = false
+    }
+    if (odkud == A8 || kam == A8) {
+        uloha.pos.vcRoch = false
+    }
+    if (odkud == H8 || kam == H8) {
+        uloha.pos.mcRoch = false
+    }
+    uloha.pos.mimoch = 0
+    if (uloha.pos.sch[odkud] == 1) {
+        if (odkud in A2..H2 && kam == odkud + 20 &&
+            (uloha.pos.sch[kam + 1] == -1 || uloha.pos.sch[kam - 1] == -1)) {
+            uloha.pos.mimoch = kam;
+        }
+    }
+    if (uloha.pos.sch[odkud] == -1) {
+        if (odkud in A7..H7 && kam == odkud - 20 &&
+            (uloha.pos.sch[kam + 1] == 1 || uloha.pos.sch[kam - 1] == 1)) {
+            uloha.pos.mimoch = kam;
+        }
+    }
+
+    uloha.pos.sch[kam] = uloha.pos.sch[odkud]
+    uloha.pos.sch[odkud] = 0
+}
+
+private fun mimochodemVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+    val odkud = (t shr 7) and 127
+    val kam = t and 127
+    data.sebranyKamen = if (uloha.pos.bily) -1 else 1
+    data.nevratnaZmena = true
+
+    uloha.pos.sch[kam] = uloha.pos.sch[odkud]
+    uloha.pos.sch[odkud] = 0
+    uloha.pos.sch[uloha.pos.mimoch] = 0
+    uloha.pos.mimoch = 0
+}
+
+private fun rosadaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+
+}
+
+private fun promenaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+
 }
