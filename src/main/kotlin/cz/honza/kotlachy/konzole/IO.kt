@@ -6,6 +6,7 @@ import cz.honza.kotlachy.pravidla.rutiny.generator.generujTahy
 import cz.honza.kotlachy.pravidla.rutiny.generator.napadeno
 import cz.honza.kotlachy.pravidla.rutiny.generator.smazTahy
 import cz.honza.kotlachy.pravidla.rutiny.tahy.tahniVPartii
+import cz.honza.kotlachy.pravidla.rutiny.tahy.tahniVPartiiZpet
 import kotlin.system.measureTimeMillis
 
 fun napoveda() {
@@ -75,5 +76,9 @@ fun command(line: String, uloha: Uloha) {
         "tg" -> testujGenerator(uloha)
         "tc" -> testujCas()
         "ta" -> tahni(uloha)
+        "tz" -> {
+            tahniVPartiiZpet(uloha)
+            vypis(uloha.pos)
+        }
     }
 }
