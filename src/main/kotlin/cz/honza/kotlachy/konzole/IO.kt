@@ -22,7 +22,7 @@ tc - testuj rychost rutin
 fun tahni(uloha: Uloha) {
     generujTahy(uloha)
     val tah = uloha.zasobnikTahu.tahy[0];
-    val tahString = tah2str(tah)
+    val tahString = tah2str(uloha, tah)
     smazTahy(uloha)
     tahniVPartii(uloha, tah)
 
@@ -33,7 +33,7 @@ fun tahni(uloha: Uloha) {
 fun testujGenerator(uloha: Uloha) {
     generujTahy(uloha)
     for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
-        println("Tah ${i + 1}. ${tah2str(uloha.zasobnikTahu.tahy[i])}")
+        println("Tah ${i + 1}. ${tah2str(uloha, uloha.zasobnikTahu.tahy[i])}")
     }
     smazTahy(uloha)
 }

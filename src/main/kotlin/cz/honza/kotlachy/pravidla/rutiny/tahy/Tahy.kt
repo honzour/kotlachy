@@ -4,9 +4,17 @@ import cz.honza.kotlachy.pravidla.data.A1
 import cz.honza.kotlachy.pravidla.data.A2
 import cz.honza.kotlachy.pravidla.data.A7
 import cz.honza.kotlachy.pravidla.data.A8
+import cz.honza.kotlachy.pravidla.data.C1
+import cz.honza.kotlachy.pravidla.data.C8
+import cz.honza.kotlachy.pravidla.data.D1
+import cz.honza.kotlachy.pravidla.data.D8
 import cz.honza.kotlachy.pravidla.data.DataPartie
 import cz.honza.kotlachy.pravidla.data.E1
 import cz.honza.kotlachy.pravidla.data.E8
+import cz.honza.kotlachy.pravidla.data.F1
+import cz.honza.kotlachy.pravidla.data.F8
+import cz.honza.kotlachy.pravidla.data.G1
+import cz.honza.kotlachy.pravidla.data.G8
 import cz.honza.kotlachy.pravidla.data.H1
 import cz.honza.kotlachy.pravidla.data.H2
 import cz.honza.kotlachy.pravidla.data.H7
@@ -154,9 +162,48 @@ private fun mimochodemVPartii(uloha: Uloha, t: Int, data: DataPartie) {
 }
 
 private fun rosadaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
-
+// nmrcv00000000000 (rosada)
+    val cerna = (t shr 12) and 1 == 1
+    val velka = (t shr 11) and 1 == 1
+    if (cerna) {
+        if (velka) {
+            with (uloha.pos) {
+                sch[E8] = 0
+                sch[A8] = 0
+                sch[C8] = -6
+                sch[D8] = -4
+            }
+        } else {
+            with (uloha.pos) {
+                sch[E8] = 0
+                sch[H8] = 0
+                sch[G8] = -6
+                sch[F8] = -4
+            }
+        }
+        uloha.pos.mcRoch = false
+        uloha.pos.vcRoch = false
+    } else {
+        if (velka) {
+            with (uloha.pos) {
+                sch[E1] = 0
+                sch[A1] = 0
+                sch[C1] = 6
+                sch[D1] = 4
+            }
+        } else {
+            with (uloha.pos) {
+                sch[E1] = 0
+                sch[H1] = 0
+                sch[G1] = 6
+                sch[F1] = 4
+            }
+        }
+        uloha.pos.mbRoch = false
+        uloha.pos.vbRoch = false
+    }
 }
 
 private fun promenaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
-
+// nmrcppoookkk0000
 }

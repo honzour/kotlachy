@@ -5,6 +5,7 @@ import cz.honza.kotlachy.pravidla.data.A1
 import cz.honza.kotlachy.pravidla.data.A2
 import cz.honza.kotlachy.pravidla.data.A7
 import cz.honza.kotlachy.pravidla.data.A8
+import cz.honza.kotlachy.pravidla.data.Uloha
 
 /* Format TTah1::data:   def.: Nenormalni tah je
 1) rosada
@@ -38,7 +39,7 @@ n - Je to nenormalni tah ?
       kkk: totiz s polem promeny, jen misto A7 (resp. A2) se bere  A8
        (resp A1)
 */
-fun tah2str(tah: Int) : String {
+fun tah2str(uloha: Uloha, tah: Int) : String {
     if (tah shr 14 == 3) {
         // rošády a proměny
         if ((tah shr 13) and 1 == 1) {
@@ -75,7 +76,10 @@ fun tah2str(tah: Int) : String {
 
         val kamX = 'a' + kam % 10
         val kamY = kam / 10 + 1
-
-        return "$odkudX$odkudY-$kamX$kamY"
+        if (uloha.pos.sch[odkud + A1] in -1 .. 1) {
+            return "$odkudX$odkudY-$kamX$kamY"
+        } else {
+            return "${int2kamen(Math.abs(uloha.pos.sch[odkud + A1]))}$odkudX$odkudY-$kamX$kamY"
+        }
     }
 }
