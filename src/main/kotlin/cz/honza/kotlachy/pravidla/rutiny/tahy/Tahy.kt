@@ -206,4 +206,29 @@ private fun rosadaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
 
 private fun promenaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
 // nmrcppoookkk0000
+    if (uloha.pos.bily) {
+        val odkud = ((t shr 7) and 7) + A7
+        val kam = ((t shr 4) and 7) + A8
+        val co = ((t shr 10) and 3) + 2
+        uloha.pos.sch[odkud] = 0
+        uloha.pos.sch[kam] = co
+        if (kam == H8) {
+            uloha.pos.mcRoch = false
+        }
+        if (kam == A8) {
+            uloha.pos.vcRoch = false
+        }
+    } else {
+        val odkud = ((t shr 7) and 7) + A2
+        val kam = ((t shr 4) and 7) + A1
+        val co = -(((t shr 10) and 3) + 2)
+        uloha.pos.sch[odkud] = 0
+        uloha.pos.sch[kam] = co
+        if (kam == H1) {
+            uloha.pos.mbRoch = false
+        }
+        if (kam == A1) {
+            uloha.pos.vbRoch = false
+        }
+    }
 }
