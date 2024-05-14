@@ -33,6 +33,26 @@ fun tahni(uloha: Uloha) {
     vypis(uloha.pos)
 }
 
+fun tahni(uloha: Uloha, tah: String) {
+    generujTahy(uloha)
+    var spravnyTah: Int? = null
+    for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
+        val t = uloha.zasobnikTahu.tahy[i]
+        val tahString = tah2str(uloha, t)
+        if (tahString == tah) {
+            spravnyTah = t
+        }
+    }
+
+    smazTahy(uloha)
+    if (spravnyTah != null) {
+        tahniVPartii(uloha, spravnyTah)
+        vypis(uloha.pos)
+    } else {
+        println("Chybný tah nebo příkaz")
+    }
+}
+
 fun testujGenerator(uloha: Uloha) {
     generujTahy(uloha)
     for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
@@ -73,6 +93,7 @@ fun testujCas() {
 
 fun command(line: String, uloha: Uloha) {
     when (line) {
+        "ko" -> println("Končím")
         "sa" -> vypis(uloha.pos)
         "na" -> napoveda()
         "tg" -> testujGenerator(uloha)
@@ -82,5 +103,6 @@ fun command(line: String, uloha: Uloha) {
             tahniVPartiiZpet(uloha)
             vypis(uloha.pos)
         }
+        else -> tahni(uloha, line)
     }
 }
