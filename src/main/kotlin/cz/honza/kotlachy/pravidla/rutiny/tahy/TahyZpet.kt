@@ -156,7 +156,6 @@ private fun promenaVPartiiZpet(uloha: Uloha, t: Int, sebrano: Int) {
     } else {
         val odkud = ((t shr 7) and 7) + A2
         val kam = ((t shr 4) and 7) + A1
-        val co = -(((t shr 10) and 3) + 2)
         uloha.pos.sch[odkud] = 1
         uloha.pos.sch[kam] = sebrano
     }
