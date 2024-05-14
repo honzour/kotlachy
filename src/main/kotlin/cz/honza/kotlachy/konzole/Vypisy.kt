@@ -4,7 +4,7 @@ import cz.honza.kotlachy.pravidla.data.A1
 import cz.honza.kotlachy.pravidla.data.Pozice
 
 fun vypis(pozice: Pozice) {
-    for (radek in 0 .. 7) {
+    for (radek in 7 downTo 0) {
         for (sloupec in 0 .. 7) {
             print("${int2kamen(pozice.sch[A1 + 10 * radek + sloupec])} ")
         }
