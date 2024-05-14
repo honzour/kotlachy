@@ -15,6 +15,8 @@ fun napoveda() {
 na - nápověda
 ko - konec
 sa - výpis aktuální pozice
+ta - táhni
+tz - táhni zpět
 tg - testuj generátor tahů
 tc - testuj rychost rutin
 """)

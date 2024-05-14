@@ -63,8 +63,9 @@ fun tah2str(uloha: Uloha, tah: Int) : String {
 
             val kamX = 'a' + kam % 10
             val kamY = kam / 10 + 1
+            val bere = if (Math.abs(odkud - kam) == 10) '-' else 'x'
 
-            return "$odkudX$odkudY-$kamX$kamY$co"
+            return "$odkudX$odkudY$bere$kamX$kamY$co"
         }
     } else {
         // normální a mimochodem
@@ -76,10 +77,11 @@ fun tah2str(uloha: Uloha, tah: Int) : String {
 
         val kamX = 'a' + kam % 10
         val kamY = kam / 10 + 1
+        val bere = if (tah shr 15 == 1 || uloha.pos.sch[kam + A1] != 0) 'x' else '-'
         if (uloha.pos.sch[odkud + A1] in -1 .. 1) {
-            return "$odkudX$odkudY-$kamX$kamY"
+            return "$odkudX$odkudY$bere$kamX$kamY"
         } else {
-            return "${int2kamen(Math.abs(uloha.pos.sch[odkud + A1]))}$odkudX$odkudY-$kamX$kamY"
+            return "${int2kamen(Math.abs(uloha.pos.sch[odkud + A1]))}$odkudX$odkudY$bere$kamX$kamY"
         }
     }
 }
