@@ -2,6 +2,7 @@ package cz.honza.kotlachy.konzole
 
 import cz.honza.kotlachy.pravidla.data.A1
 import cz.honza.kotlachy.pravidla.data.Pozice
+import cz.honza.kotlachy.pravidla.rutiny.generator.sach
 
 fun vypis(pozice: Pozice) {
     for (radek in 7 downTo 0) {
@@ -16,6 +17,9 @@ fun vypis(pozice: Pozice) {
     val mc = if (pozice.mcRoch) "mc" else ""
     val vc = if (pozice.vcRoch) "vb" else ""
     println("$bily, mimoch: ${pozice.mimoch}, roch: $mb $vb $mc $vc")
+    if (sach(pozice)) {
+        println("Šach")
+    }
 }
 
 fun int2kamen(kamen: Int) : Char {

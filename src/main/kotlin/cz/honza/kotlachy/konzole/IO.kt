@@ -81,8 +81,8 @@ fun testujCas() {
     val napadeni = measureTimeMillis {
         for (j in 0..1000000) {
             for (i in A1 .. H8) {
-                if (napadeno(tmpUloha, i, true)) suma++
-                if (napadeno(tmpUloha, i, false)) suma--
+                if (napadeno(tmpUloha.pos.sch, i, true)) suma++
+                if (napadeno(tmpUloha.pos.sch, i, false)) suma--
             }
         }
     }

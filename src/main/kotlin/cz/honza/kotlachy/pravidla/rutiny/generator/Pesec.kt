@@ -2,12 +2,12 @@ package cz.honza.kotlachy.pravidla.rutiny.generator
 
 import cz.honza.kotlachy.pravidla.data.*
 
-fun napadenoBilymPescem(uloha: Uloha, pole: Int) : Boolean {
-    return uloha.pos.sch[pole - 11]  == 1 || uloha.pos.sch[pole - 9]  == 1
+fun napadenoBilymPescem(sch: Array<Int>, pole: Int) : Boolean {
+    return sch[pole - 11]  == 1 || sch[pole - 9]  == 1
 }
 
-fun napadenoCernymPescem(uloha: Uloha, pole: Int) : Boolean {
-    return uloha.pos.sch[pole + 11]  == -1 || uloha.pos.sch[pole + 9]  == -1
+fun napadenoCernymPescem(sch: Array<Int>, pole: Int) : Boolean {
+    return sch[pole + 11]  == -1 || sch[pole + 9]  == -1
 }
 
 fun bilyPesec(uloha: Uloha, pole: Int) {

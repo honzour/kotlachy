@@ -32,9 +32,9 @@ fun bilyKral(uloha: Uloha, pole: Int) {
         && uloha.pos.mbRoch
         && uloha.pos.sch[F1] == 0
         && uloha.pos.sch[G1] == 0
-        && !napadeno(uloha, E1, false)
-        && !napadeno(uloha, F1, false)
-        && !napadeno(uloha, G1, false)
+        && !napadeno(uloha.pos.sch, E1, false)
+        && !napadeno(uloha.pos.sch, F1, false)
+        && !napadeno(uloha.pos.sch, G1, false)
     ) {
         // nmrcv00000000000 (rosada)
         zaradTah(uloha, /*11100 */ 28 shl 11)
@@ -46,9 +46,9 @@ fun bilyKral(uloha: Uloha, pole: Int) {
         && uloha.pos.sch[B1] == 0
         && uloha.pos.sch[C1] == 0
         && uloha.pos.sch[D1] == 0
-        && !napadeno(uloha, E1, false)
-        && !napadeno(uloha, D1, false)
-        && !napadeno(uloha, C1, false)
+        && !napadeno(uloha.pos.sch, E1, false)
+        && !napadeno(uloha.pos.sch, D1, false)
+        && !napadeno(uloha.pos.sch, C1, false)
     ) {
         // nmrcv00000000000 (rosada)
         zaradTah(uloha, /*11101 */ 29 shl 11)
@@ -67,9 +67,9 @@ fun cernyKral(uloha: Uloha, pole: Int) {
         && uloha.pos.mcRoch
         && uloha.pos.sch[F8] == 0
         && uloha.pos.sch[G8] == 0
-        && !napadeno(uloha, E8, true)
-        && !napadeno(uloha, F8, true)
-        && !napadeno(uloha, G8, true)
+        && !napadeno(uloha.pos.sch, E8, true)
+        && !napadeno(uloha.pos.sch, F8, true)
+        && !napadeno(uloha.pos.sch, G8, true)
     ) {
         // nmrcv00000000000 (rosada)
         zaradTah(uloha, /*11110 */ 30 shl 11)
@@ -81,29 +81,29 @@ fun cernyKral(uloha: Uloha, pole: Int) {
         && uloha.pos.sch[B8] == 0
         && uloha.pos.sch[C8] == 0
         && uloha.pos.sch[D8] == 0
-        && !napadeno(uloha, E8, true)
-        && !napadeno(uloha, D8, true)
-        && !napadeno(uloha, C8, true)
+        && !napadeno(uloha.pos.sch, E8, true)
+        && !napadeno(uloha.pos.sch, D8, true)
+        && !napadeno(uloha.pos.sch, C8, true)
     ) {
         // nmrcv00000000000 (rosada)
         zaradTah(uloha, /*11111 */ 31 shl 11)
     }
 }
 
-fun napadenoBilymKralem(uloha: Uloha, pole: Int): Boolean {
+fun napadenoBilymKralem(sch: Array<Int>, pole: Int): Boolean {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] == 6) {
+        if (sch[kam] == 6) {
             return true
         }
     }
     return false
 }
 
-fun napadenoCernymKralem(uloha: Uloha, pole: Int): Boolean {
+fun napadenoCernymKralem(sch: Array<Int>, pole: Int): Boolean {
     for (i in offsetKrale.indices) {
         val kam = pole + offsetKrale[i]
-        if (uloha.pos.sch[kam] == -6) {
+        if (sch[kam] == -6) {
             return true
         }
     }
