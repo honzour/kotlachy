@@ -58,6 +58,10 @@ n - Je to nenormalni tah ?
 /**
  * Pokud je tah null, bere se z partie.
  */
+fun tahniVPropoctu(uloha: Uloha, tah: Int) {
+    val data = uloha.zasobnikTahu.propocet[uloha.zasobnikTahu.hloubka]
+}
+
 fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
     val data =
         if (tah == null) {
@@ -74,24 +78,8 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
                 nevratnaZmena = false
             )
         }
-    val t = data.tah
-    uloha.pos.mimoch = 0
-    // Normální tah
-    if ((t shr 15) and 1 == 0) {
-        normalniTahVPartii(uloha, t, data)
-    } else {
-        if ((t shr 14) and 1 == 0) {
-            mimochodemVPartii(uloha, t, data)
-        } else {
-            if ((t shr 13) and 1 == 1) {
-                rosadaVPartii(uloha, t, data)
-            } else {
-                promenaVPartii(uloha, t, data)
-            }
-        }
-    }
 
-    uloha.pos.bily = !uloha.pos.bily
+    tahni(uloha, data.tah, data)
 
     uloha.indexDoPartie++;
     if (tah != null) {
@@ -102,7 +90,28 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
     }
 }
 
-private fun normalniTahVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+private fun tahni(uloha: Uloha, t: Int, data: DataPartie) {
+    val t = data.tah
+    uloha.pos.mimoch = 0
+    // Normální tah
+    if ((t shr 15) and 1 == 0) {
+        normalniTah(uloha, t, data)
+    } else {
+        if ((t shr 14) and 1 == 0) {
+            mimochodem(uloha, t, data)
+        } else {
+            if ((t shr 13) and 1 == 1) {
+                rosada(uloha, t, data)
+            } else {
+                promena(uloha, t, data)
+            }
+        }
+    }
+
+    uloha.pos.bily = !uloha.pos.bily
+}
+
+private fun normalniTah(uloha: Uloha, t: Int, data: DataPartie) {
     val odkud = (t shr 7) and 127
     val kam = t and 127
     data.sebranyKamen = uloha.pos.sch[kam]
@@ -149,7 +158,7 @@ private fun normalniTahVPartii(uloha: Uloha, t: Int, data: DataPartie) {
     uloha.pos.sch[odkud] = 0
 }
 
-private fun mimochodemVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+private fun mimochodem(uloha: Uloha, t: Int, data: DataPartie) {
     val odkud = (t shr 7) and 127
     val kam = t and 127
     data.sebranyKamen = if (uloha.pos.bily) -1 else 1
@@ -161,7 +170,7 @@ private fun mimochodemVPartii(uloha: Uloha, t: Int, data: DataPartie) {
     uloha.pos.mimoch = 0
 }
 
-private fun rosadaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+private fun rosada(uloha: Uloha, t: Int, data: DataPartie) {
 // nmrcv00000000000 (rosada)
     val cerna = (t shr 12) and 1 == 1
     val velka = (t shr 11) and 1 == 1
@@ -204,7 +213,7 @@ private fun rosadaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
     }
 }
 
-private fun promenaVPartii(uloha: Uloha, t: Int, data: DataPartie) {
+private fun promena(uloha: Uloha, t: Int, data: DataPartie) {
 // nmrcppoookkk0000
     if (uloha.pos.bily) {
         val odkud = ((t shr 7) and 7) + A7

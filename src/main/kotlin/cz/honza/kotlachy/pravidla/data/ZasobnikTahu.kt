@@ -4,9 +4,9 @@ class ZasobnikTahu(
     var hloubka: Int = 0,
     val maxHloubka: Int = 256,
     val limit: Int = maxHloubka * 256,
-    val meze: Array<Int> = Array(maxHloubka + 1, {0}),
-    val tahy: Array<Int> = Array(limit, {0}),
-    val ceny: Array<Int> = Array(limit, {0})
+    val meze: Array<Int> = Array(maxHloubka + 1) {0},
+    val tahy: Array<Int> = Array(limit) {0},
+    val propocet: Array<DataPartie> = Array(maxHloubka) {DataPartie()}
 ) {
     fun push() {
         if (hloubka >= maxHloubka) {
