@@ -8,6 +8,7 @@ import cz.honza.kotlachy.pravidla.data.C1
 import cz.honza.kotlachy.pravidla.data.C8
 import cz.honza.kotlachy.pravidla.data.D1
 import cz.honza.kotlachy.pravidla.data.D8
+import cz.honza.kotlachy.pravidla.data.DataPartie
 import cz.honza.kotlachy.pravidla.data.E1
 import cz.honza.kotlachy.pravidla.data.E8
 import cz.honza.kotlachy.pravidla.data.F1
@@ -55,25 +56,32 @@ n - Je to nenormalni tah ?
 /**
  * Pokud je tah null, bere se z partie.
  */
+
 fun tahniVPartiiZpet(uloha: Uloha) {
     if (uloha.indexDoPartie < 0) {
         return
     }
     val data = uloha.partie[uloha.indexDoPartie]
     uloha.indexDoPartie--
+
+    tahniZpet(uloha, data)
+}
+
+
+fun tahniZpet(uloha: Uloha, data: DataPartie) {
     val t = data.tah
 
     // Normální tah
     if ((t shr 15) and 1 == 0) {
-        normalniTahVPartiiZpet(uloha, t, data.sebranyKamen)
+        normalniTahZpet(uloha, t, data.sebranyKamen)
     } else {
         if ((t shr 14) and 1 == 0) {
-            mimochodemVPartiiZpet(uloha, t)
+            mimochodemZpet(uloha, t)
         } else {
             if ((t shr 13) and 1 == 1) {
-                rosadaVPartiiZpet(uloha, t)
+                rosadaZpet(uloha, t)
             } else {
-                promenaVPartiiZpet(uloha, t, data.sebranyKamen)
+                promenaZpet(uloha, t, data.sebranyKamen)
             }
         }
     }
@@ -89,7 +97,7 @@ fun tahniVPartiiZpet(uloha: Uloha) {
     }
 }
 
-private fun normalniTahVPartiiZpet(uloha: Uloha, t: Int, co: Int) {
+private fun normalniTahZpet(uloha: Uloha, t: Int, co: Int) {
     val odkud = (t shr 7) and 127
     val kam = t and 127
 
@@ -97,7 +105,7 @@ private fun normalniTahVPartiiZpet(uloha: Uloha, t: Int, co: Int) {
     uloha.pos.sch[kam] = co
 }
 
-private fun mimochodemVPartiiZpet(uloha: Uloha, t: Int) {
+private fun mimochodemZpet(uloha: Uloha, t: Int) {
     val odkud = (t shr 7) and 127
     val kam = t and 127
 
@@ -106,7 +114,7 @@ private fun mimochodemVPartiiZpet(uloha: Uloha, t: Int) {
     uloha.pos.sch[uloha.pos.mimoch] = if (uloha.pos.bily) 1 else -1
 }
 
-private fun rosadaVPartiiZpet(uloha: Uloha, t: Int) {
+private fun rosadaZpet(uloha: Uloha, t: Int) {
     val cerna = (t shr 12) and 1 == 1
     val velka = (t shr 11) and 1 == 1
     if (cerna) {
@@ -146,7 +154,7 @@ private fun rosadaVPartiiZpet(uloha: Uloha, t: Int) {
     }
 }
 
-private fun promenaVPartiiZpet(uloha: Uloha, t: Int, sebrano: Int) {
+private fun promenaZpet(uloha: Uloha, t: Int, sebrano: Int) {
 // nmrcppoookkk0000
     if (uloha.pos.bily) {
         val odkud = ((t shr 7) and 7) + A7

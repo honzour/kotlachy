@@ -60,6 +60,7 @@ n - Je to nenormalni tah ?
  */
 fun tahniVPropoctu(uloha: Uloha, tah: Int) {
     val data = uloha.zasobnikTahu.propocet[uloha.zasobnikTahu.hloubka]
+    tahni(uloha, tah, data)
 }
 
 fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
