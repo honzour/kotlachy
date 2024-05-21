@@ -2,7 +2,8 @@ package cz.honza.kotlachy.konzole
 
 import cz.honza.kotlachy.notace.tah2str
 import cz.honza.kotlachy.pravidla.data.*
-import cz.honza.kotlachy.pravidla.rutiny.generator.generujTahy
+import cz.honza.kotlachy.pravidla.rutiny.generator.generujPripustneTahy
+import cz.honza.kotlachy.pravidla.rutiny.generator.generujPseudolegalniTahy
 import cz.honza.kotlachy.pravidla.rutiny.generator.napadeno
 import cz.honza.kotlachy.pravidla.rutiny.generator.smazTahy
 import cz.honza.kotlachy.pravidla.rutiny.tahy.tahniVPartii
@@ -23,7 +24,7 @@ tc - testuj rychost rutin
 }
 
 fun tahni(uloha: Uloha) {
-    generujTahy(uloha)
+    generujPripustneTahy(uloha)
     val tah = uloha.zasobnikTahu.tahy[0];
     val tahString = tah2str(uloha, tah)
     smazTahy(uloha)
@@ -34,7 +35,7 @@ fun tahni(uloha: Uloha) {
 }
 
 fun tahni(uloha: Uloha, tah: String) {
-    generujTahy(uloha)
+    generujPripustneTahy(uloha)
     var spravnyTah: Int? = null
     for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
         val t = uloha.zasobnikTahu.tahy[i]
@@ -54,7 +55,7 @@ fun tahni(uloha: Uloha, tah: String) {
 }
 
 fun testujGenerator(uloha: Uloha) {
-    generujTahy(uloha)
+    generujPripustneTahy(uloha)
     for (i in uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka - 1] .. uloha.zasobnikTahu.meze[uloha.zasobnikTahu.hloubka] - 1) {
         println("Tah ${i + 1}. ${tah2str(uloha, uloha.zasobnikTahu.tahy[i])}")
     }
@@ -70,7 +71,7 @@ fun testujCas() {
     var suma: Long = 0
     val generator = measureTimeMillis {
         for (j in 0..1000000) {
-            generujTahy(tmpUloha)
+            generujPseudolegalniTahy(tmpUloha)
             for (i in tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka - 1]
                     ..tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka] - 1) {
                 suma += tmpUloha.zasobnikTahu.tahy[i]

@@ -67,8 +67,12 @@ fun tahniVPartiiZpet(uloha: Uloha) {
     tahniZpet(uloha, data)
 }
 
+fun tahniZpetVPropoctu(uloha: Uloha) {
+    tahniZpet(uloha, uloha.zasobnikTahu.propocet[uloha.zasobnikTahu.hloubka])
+}
 
-fun tahniZpet(uloha: Uloha, data: DataPartie) {
+
+private fun tahniZpet(uloha: Uloha, data: DataPartie) {
     val t = data.tah
 
     // Normální tah
