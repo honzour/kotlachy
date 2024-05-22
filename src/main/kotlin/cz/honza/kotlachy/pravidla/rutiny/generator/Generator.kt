@@ -34,7 +34,7 @@ private fun smazNepripustneTahy(uloha: Uloha) {
         var kam = meze[hloubka - 1]
         var co = meze[hloubka - 1]
         while (co < meze[hloubka]) {
-            if (tahy[kam] == 0) {
+            if (tahy[co] == 0) {
                 co++
                 continue
             }

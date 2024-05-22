@@ -60,7 +60,8 @@ n - Je to nenormalni tah ?
  */
 fun tahniVPropoctu(uloha: Uloha, tah: Int) {
     val data = uloha.zasobnikTahu.propocet[uloha.zasobnikTahu.hloubka]
-    tahni(uloha, tah, data)
+    data.tah = tah
+    tahni(uloha, data)
 }
 
 fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
@@ -80,7 +81,7 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
             )
         }
 
-    tahni(uloha, data.tah, data)
+    tahni(uloha, data)
 
     uloha.indexDoPartie++;
     if (tah != null) {
@@ -91,7 +92,7 @@ fun tahniVPartii(uloha: Uloha, tah: Int? = null) {
     }
 }
 
-private fun tahni(uloha: Uloha, t: Int, data: DataPartie) {
+private fun tahni(uloha: Uloha, data: DataPartie) {
     val t = data.tah
     uloha.pos.mimoch = 0
     // Normální tah
