@@ -24,10 +24,25 @@ fun smazTahy(uloha: Uloha) {
 
 private fun smazNepripustneTahy(uloha: Uloha) {
     with (uloha.zasobnikTahu) {
-        for (i in meze[hloubka - 1] .. meze[hloubka]) {
+        for (i in meze[hloubka - 1] .. meze[hloubka] - 1) {
             tahniVPropoctu(uloha, tahy[i])
+            if (sach(uloha.pos, !uloha.pos.bily, null)) {
+                tahy[i] = 0
+            }
             tahniZpetVPropoctu(uloha)
         }
+        var kam = meze[hloubka - 1]
+        var co = meze[hloubka - 1]
+        while (co < meze[hloubka]) {
+            if (tahy[kam] == 0) {
+                co++
+                continue
+            }
+            tahy[kam] = tahy[co]
+            co++
+            kam++
+        }
+        meze[hloubka] = kam
     }
 }
 
