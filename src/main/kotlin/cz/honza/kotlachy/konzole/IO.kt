@@ -20,6 +20,7 @@ ta - táhni
 tz - táhni zpět
 tg - testuj generátor tahů
 tc - testuj rychost rutin
+np - nová partie
 """)
 }
 
@@ -63,17 +64,14 @@ fun testujGenerator(uloha: Uloha) {
 }
 
 fun testujCas() {
-    val tmpUloha = Uloha(
-        pos = Pozice(
-            sch = TESTOVACI_SACHOVNICE1.toTypedArray()
-        )
-    )
+    val tmpUloha = Uloha()
+    tmpUloha.pos = Pozice(sch = TESTOVACI_SACHOVNICE1.toTypedArray())
+
     var suma: Long = 0
     val generator = measureTimeMillis {
         for (j in 0..1000000) {
             generujPseudolegalniTahy(tmpUloha)
-            for (i in tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka - 1]
-                    ..tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka] - 1) {
+            for (i in tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka - 1]..<tmpUloha.zasobnikTahu.meze[tmpUloha.zasobnikTahu.hloubka]) {
                 suma += tmpUloha.zasobnikTahu.tahy[i]
             }
             smazTahy(tmpUloha)
@@ -92,6 +90,22 @@ fun testujCas() {
             "suma $suma")
 }
 
+private fun novaPartie(uloha: Uloha) {
+    uloha.init()
+}
+
+private fun novaKralovskaKoncovka(uloha: Uloha) {
+    uloha.init()
+}
+
+private fun novaKoncovka(uloha: Uloha) {
+    uloha.init()
+}
+
+private fun novaStredniHra(uloha: Uloha) {
+    uloha.init()
+}
+
 fun command(line: String, uloha: Uloha) {
     when (line) {
         "ko" -> println("Končím")
@@ -104,6 +118,10 @@ fun command(line: String, uloha: Uloha) {
             tahniVPartiiZpet(uloha)
             vypis(uloha.pos)
         }
+        "np" -> novaPartie(uloha)
+        "ns" -> novaStredniHra(uloha)
+        "nk" -> novaKoncovka(uloha)
+        "nK" -> novaKralovskaKoncovka(uloha)
         else -> tahni(uloha, line)
     }
 }

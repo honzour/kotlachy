@@ -1,8 +1,19 @@
 package cz.honza.kotlachy.pravidla.data
 
-class Uloha(
-    val pos: Pozice = Pozice(),
-    val zasobnikTahu: ZasobnikTahu = ZasobnikTahu(),
-    val partie: MutableList<DataPartie> = mutableListOf(),
+class Uloha {
+    lateinit var pos: Pozice
+    lateinit var zasobnikTahu: ZasobnikTahu
+    lateinit var partie: MutableList<DataPartie>
     var indexDoPartie: Int = -1
-)
+
+    constructor() {
+        init()
+    }
+
+    fun init() {
+        pos = Pozice()
+        zasobnikTahu = ZasobnikTahu()
+        partie = mutableListOf()
+        indexDoPartie = -1
+    }
+}
