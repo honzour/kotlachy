@@ -1,7 +1,7 @@
 package cz.honza.kotlachy.pravidla.data
 
 class Pozice(
-    val sch: Array<Int> = ZAKLADNI_SACHOVNICE.toTypedArray(),
+    var sch: Array<Int> = ZAKLADNI_SACHOVNICE.toTypedArray(),
 
     var mbRoch: Boolean = true,
     var vbRoch: Boolean = true,
@@ -92,7 +92,7 @@ val KRALOVSKA_KONCOVKA = listOf(
     100,   0,   0,   0,   0,   0,   0,   0,   0, 100, // 5
     100,   0,   0,   0,   0,   0,   0,   0,   0, 100, // 6
     100,   0,   0,   0,   0,   0,   0,   0,   0, 100, // 7
-    100,   0,   0,   0,   6,   0,   0,   0,   0, 100, // 8
+    100,   0,   0,   0,  -6,   0,   0,   0,   0, 100, // 8
     100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
     100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
 )

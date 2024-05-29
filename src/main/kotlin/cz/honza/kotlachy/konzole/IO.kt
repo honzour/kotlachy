@@ -26,12 +26,16 @@ np - nová partie
 
 fun tahni(uloha: Uloha) {
     generujPripustneTahy(uloha)
-    val tah = uloha.zasobnikTahu.tahy[0];
-    val tahString = tah2str(uloha, tah)
-    smazTahy(uloha)
-    tahniVPartii(uloha, tah)
+    if (uloha.zasobnikTahu.meze[1] > uloha.zasobnikTahu.meze[0]) {
+        val tah = uloha.zasobnikTahu.tahy[0];
+        val tahString = tah2str(uloha, tah)
+        smazTahy(uloha)
+        tahniVPartii(uloha, tah)
 
-    println(tahString)
+        println(tahString)
+    } else {
+        println("Není přípustný tah.")
+    }
     vypis(uloha.pos)
 }
 
@@ -96,14 +100,36 @@ private fun novaPartie(uloha: Uloha) {
 
 private fun novaKralovskaKoncovka(uloha: Uloha) {
     uloha.init()
+    uloha.pos.sch = KRALOVSKA_KONCOVKA.toTypedArray()
+    with (uloha.pos) {
+        mcRoch = false
+        mbRoch = false
+        vbRoch = false
+        vcRoch = false
+    }
+
 }
 
 private fun novaKoncovka(uloha: Uloha) {
     uloha.init()
+    uloha.pos.sch = KONCOVKA.toTypedArray()
+    with (uloha.pos) {
+        mcRoch = false
+        mbRoch = false
+        vbRoch = false
+        vcRoch = false
+    }
 }
 
 private fun novaStredniHra(uloha: Uloha) {
     uloha.init()
+    uloha.pos.sch = STREDNI_HRA.toTypedArray()
+    with (uloha.pos) {
+        mcRoch = false
+        mbRoch = false
+        vbRoch = false
+        vcRoch = false
+    }
 }
 
 fun command(line: String, uloha: Uloha) {
